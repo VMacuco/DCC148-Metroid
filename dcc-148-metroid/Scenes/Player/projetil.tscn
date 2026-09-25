@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://bqmm8fdm7wv1k"]
+
+[ext_resource type="Texture2D" uid="uid://f5sm0ievjkf3" path="res://Assets/Player/Player_Projectiles/Red/PNG/Blaster.png" id="1_fxd4n"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v27pj"]
+atlas = ExtResource("1_fxd4n")
+region = Rect2(0, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0r7bl"]
+atlas = ExtResource("1_fxd4n")
+region = Rect2(8, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5335s"]
+atlas = ExtResource("1_fxd4n")
+region = Rect2(16, 0, 8, 8)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kltys"]
+atlas = ExtResource("1_fxd4n")
+region = Rect2(24, 0, 8, 8)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0i88t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v27pj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0r7bl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5335s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kltys")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ckb4l"]
+radius = 5.0
+
+[node name="Projetil" type="Area2D" unique_id=671987719]
+collision_layer = 2
+collision_mask = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=440276838]
+sprite_frames = SubResource("SpriteFrames_0i88t")
+frame_progress = 0.27622196
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=100323229]
+shape = SubResource("CircleShape2D_ckb4l")

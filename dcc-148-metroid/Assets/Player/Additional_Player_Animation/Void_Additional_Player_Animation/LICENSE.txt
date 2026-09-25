@@ -1,0 +1,8 @@
+LICENSE:
+- You can use the Void Asset Pack: Additional Content's assets for both commercial and personal projects.
+- You cannot resell or redistribute the Void Asset Pack: Additional Content's assets.
+- You can modify the Void Asset Pack: Additional Content's assets to better fit your projects.
+- You cannot modify the Void Asset Pack: Additional Content's assets for resell or redistribution.
+- You can use the Void Asset Pack: Additional Content's assets in a group project. -- NOTE: Only one person has to own the asset, not everyone.
+- You cannot share the Void Asset Pack: Additional Content's assets.
+- You cannot sell a project file that uses the Void Asset Pack: Additional Content's assets.  
