@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c7i5020v66xfl"]
 
 [ext_resource type="Texture2D" uid="uid://ts7xqd7agggm" path="res://Assets/Player/PNG/Red/Voidster_Standing_R.png" id="1_0aovh"]
-[ext_resource type="Script" uid="uid://cfsk107ekaar0" path="res://Scenes/Player/player_character.gd" id="1_fhr3q"]
+[ext_resource type="Script" uid="uid://cfsk107ekaar0" path="res://Scripts/Player/player_character.gd" id="1_fhr3q"]
 [ext_resource type="Texture2D" uid="uid://d027ehdiitgdd" path="res://Assets/Player/Additional_Player_Animation/Void_Additional_Player_Animation/Red/PNG/Voidster_Front_Pose.png" id="2_6e1h8"]
 [ext_resource type="Texture2D" uid="uid://duq4q630x0fg4" path="res://Assets/Player/PNG/Red/Voidster_Standing_L.png" id="2_fhr3q"]
 [ext_resource type="Texture2D" uid="uid://bqavftlh8mg3a" path="res://Assets/Player/PNG/Red/Voidster_Jump_L.png" id="3_asof1"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://dgyxe3ygio7ow" path="res://Assets/Player/PNG/Red/Voidster_Run_R.png" id="8_6k8qh"]
 [ext_resource type="Texture2D" uid="uid://djwyf4mepy7mi" path="res://Assets/Player/Additional_Player_Animation/Void_Additional_Player_Animation/Red/PNG/Voidster_Run_L.png" id="10_qsqtf"]
 [ext_resource type="Texture2D" uid="uid://bwseehjka7mjh" path="res://Assets/Player/Additional_Player_Animation/Void_Additional_Player_Animation/Red/PNG/Voidster_Run_R.png" id="12_nvc3x"]
+[ext_resource type="Script" uid="uid://cwcb3lgto4v5n" path="res://Scripts/Object_Pool.gd" id="13_nvc3x"]
+[ext_resource type="PackedScene" uid="uid://bqmm8fdm7wv1k" path="res://Scenes/Player/projetil.tscn" id="14_6k8qh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6k8qh"]
 atlas = ExtResource("2_6e1h8")
@@ -362,7 +364,14 @@ script = ExtResource("1_fhr3q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1169741703]
 sprite_frames = SubResource("SpriteFrames_0i88t")
-animation = &"jump_right"
+animation = &"run_right_look_up"
+frame_progress = 0.06612036
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=606383757]
 shape = SubResource("CapsuleShape2D_ckb4l")
+
+[node name="BulletPool" type="Node" parent="." unique_id=2043425834]
+script = ExtResource("13_nvc3x")
+object_scene = ExtResource("14_6k8qh")
+pool_size = 10
+metadata/_custom_type_script = "uid://cwcb3lgto4v5n"

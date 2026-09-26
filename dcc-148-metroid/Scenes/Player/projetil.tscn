@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bqmm8fdm7wv1k"]
 
 [ext_resource type="Texture2D" uid="uid://f5sm0ievjkf3" path="res://Assets/Player/Player_Projectiles/Red/PNG/Blaster.png" id="1_fxd4n"]
+[ext_resource type="Script" uid="uid://d3wld4djl8sro" path="res://Scripts/Player/projetil.gd" id="1_v27pj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v27pj"]
 atlas = ExtResource("1_fxd4n")
@@ -42,8 +43,9 @@ animations = [{
 radius = 5.0
 
 [node name="Projetil" type="Area2D" unique_id=671987719]
-collision_layer = 2
+scale = Vector2(0.5, 0.5)
 collision_mask = 2
+script = ExtResource("1_v27pj")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=440276838]
 sprite_frames = SubResource("SpriteFrames_0i88t")
@@ -51,3 +53,5 @@ frame_progress = 0.27622196
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=100323229]
 shape = SubResource("CircleShape2D_ckb4l")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
