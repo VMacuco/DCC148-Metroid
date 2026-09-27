@@ -10,9 +10,18 @@ var target: Vector2
 @onready var sprite = $AnimatedSprite2D
 @onready var BulletPool = $BulletPool
 
+var armadillo_upgrade: bool
+var armadillo_mode: bool
+@onready var player_collision = $PlayerCollision
+@onready var armadillo_collision = $ArmadilloColision
+@onready var space_check = $SpaceCheck
+
 func _ready() -> void:
 	target = Vector2.RIGHT
 	sprite.play("idle")
+	armadillo_upgrade = true
+	armadillo_mode = false
+	
 
 func shoot() -> void:
 	var shoot_dir: Vector2
@@ -44,16 +53,18 @@ func shoot() -> void:
 		bullet.rotation = bullet_rotation
 		bullet.direction = shoot_dir
 		bullet.traveled_distance = 0.0
+		bullet.is_destroing = false
+		#print("atirei")
 		
 		var return_bullet = func(): BulletPool.return_to_pool(bullet)
 		if not bullet.hit_or_fade.is_connected(return_bullet):
 			bullet.hit_or_fade.connect(return_bullet, CONNECT_ONE_SHOT)
 
 func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("shoot"):
+	if Input.is_action_just_pressed("shoot") and not armadillo_mode:
 		shoot()
 
-func _physics_process(delta: float) -> void:
+func _player_process(delta: float) -> void:
 	var move_direction := Input.get_axis("move_left", "move_right")
 	var target_direction := Input.get_vector("move_left", "move_right", "look_up", "ball")
 	
@@ -68,6 +79,15 @@ func _physics_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	
+	if Input.is_action_just_pressed("ball") and armadillo_upgrade:
+		if looking_right:
+			sprite.play("armadillo_activation_right")
+		else:
+			sprite.play("armadillo_activation_left")
+		player_collision.disabled = true
+		armadillo_collision.disabled = false
+		armadillo_mode = true
 		
 	if not is_on_floor():
 		velocity.y += get_gravity().y * delta
@@ -99,3 +119,45 @@ func _physics_process(delta: float) -> void:
 				sprite.play("idle_right" if looking_right else "idle_left")
 	
 	move_and_slide()
+
+func _armadillo_process(delta: float) ->void:
+	var move_direction := Input.get_axis("move_left", "move_right")
+	var is_moving: bool = move_direction != 0
+	var direction = 0.0
+	
+	direction = move_direction if is_moving else direction
+	
+	if Input.is_action_just_pressed("jump") or Input.is_action_just_pressed("look_up"):
+		if not space_check.is_colliding():
+			if target.x > 0:
+				sprite.play("armadillo_activation_right", 1,true)
+			else:
+				sprite.play("armadillo_activation_left", 1, true)
+			armadillo_collision.disabled = true
+			player_collision.disabled = false
+			armadillo_mode = false
+	
+	if not is_on_floor():
+		velocity.y += get_gravity().y * delta
+	
+	if is_on_floor():
+		if is_moving:
+			velocity.x = move_direction * SPEED
+		else:
+			velocity.x = 0
+	else:
+		if is_moving:
+			velocity.x = move_toward(velocity.x, move_direction * SPEED, AIR_ACCELERATION * delta)
+	
+	if is_moving:
+		sprite.play("armadillo_move_right" if direction > 0 else "armadillo_move_left")
+	else:
+		sprite.play("armadillo_idle_right" if direction > 0 else "armadillo_idle_left")
+	
+	move_and_slide()
+
+func _physics_process(delta: float) -> void:
+	if not armadillo_mode:
+		_player_process(delta)
+	else:
+		_armadillo_process(delta)

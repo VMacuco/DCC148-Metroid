@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="dcc148-Metroid"
+run/main_scene="uid://de21yfi5pep1w"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
@@ -18,6 +19,10 @@ config/icon="res://icon.svg"
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/Pichau/Documents/GD/Sumas.avi"
 
 [input]
 

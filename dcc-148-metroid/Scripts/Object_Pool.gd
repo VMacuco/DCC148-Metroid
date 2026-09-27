@@ -18,6 +18,9 @@ func _ready() -> void:
 	available = pool_size
 
 func get_from_pool() -> Node2D:
+	if available <= 0:
+		return null
+	
 	var obj = objects[0]
 	
 	available -= 1
