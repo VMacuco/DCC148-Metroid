@@ -1,0 +1,62 @@
+[gd_scene format=3 uid="uid://etdtgcull8xn"]
+
+[ext_resource type="Script" uid="uid://lpalvnoxueqy" path="res://Scripts/enemies/geemer.gd" id="1_6l7tr"]
+[ext_resource type="Texture2D" uid="uid://cxxf7k87a4bef" path="res://Assets/Enemies/PNG/Wiggleton.png" id="1_e6b87"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6l7tr"]
+atlas = ExtResource("1_e6b87")
+region = Rect2(0, 0, 40, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osrpq"]
+atlas = ExtResource("1_e6b87")
+region = Rect2(40, 0, 40, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ucfyl"]
+atlas = ExtResource("1_e6b87")
+region = Rect2(80, 0, 40, 20)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e51bj"]
+atlas = ExtResource("1_e6b87")
+region = Rect2(120, 0, 40, 20)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ckb4l"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6l7tr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osrpq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ucfyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e51bj")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0i88t"]
+size = Vector2(23, 12)
+
+[node name="Geemer" type="CharacterBody2D" unique_id=104960465]
+script = ExtResource("1_6l7tr")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=806521582]
+sprite_frames = SubResource("SpriteFrames_ckb4l")
+frame_progress = 0.17727995
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=31957874]
+position = Vector2(-0.5, -2)
+shape = SubResource("RectangleShape2D_0i88t")
+
+[node name="RayCast_Ground" type="RayCast2D" parent="." unique_id=874123329]
+position = Vector2(10, 5)
+target_position = Vector2(0, 9)
+
+[node name="RayCast_Wall" type="RayCast2D" parent="." unique_id=1389529659]
+position = Vector2(12, -2)
+target_position = Vector2(10, 0)

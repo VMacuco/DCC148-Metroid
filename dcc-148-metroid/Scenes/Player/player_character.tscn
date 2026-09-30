@@ -543,16 +543,10 @@ script = ExtResource("1_fhr3q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1169741703]
 sprite_frames = SubResource("SpriteFrames_0i88t")
-animation = &"armadillo_idle_left"
+animation = &"idle_right"
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=606383757]
 shape = SubResource("CapsuleShape2D_ckb4l")
-
-[node name="BulletPool" type="Node" parent="." unique_id=2043425834]
-script = ExtResource("13_nvc3x")
-object_scene = ExtResource("14_6k8qh")
-pool_size = 10
-metadata/_custom_type_script = "uid://cwcb3lgto4v5n"
 
 [node name="ArmadilloColision" type="CollisionShape2D" parent="." unique_id=874208935]
 position = Vector2(0, 8)
@@ -561,6 +555,16 @@ shape = SubResource("CircleShape2D_0i88t")
 disabled = true
 
 [node name="SpaceCheck" type="ShapeCast2D" parent="." unique_id=2139386218]
+visible = false
 scale = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_ckb4l")
 target_position = Vector2(0, 0)
+
+[node name="BulletPool" type="Node" parent="." unique_id=2043425834]
+script = ExtResource("13_nvc3x")
+object_scene = ExtResource("14_6k8qh")
+pool_size = 10
+metadata/_custom_type_script = "uid://cwcb3lgto4v5n"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1559384563]
+zoom = Vector2(2.5, 2.5)

@@ -61,6 +61,9 @@ shoot={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Projetil"
+2d_physics/layer_3="Inimigos"
+2d_physics/layer_5="Hitbox"
+2d_physics/layer_7="Hurtbox"
 
 [physics]
 
