@@ -274,7 +274,7 @@ tile_map_data = PackedByteArray("AAAAAAsAAAAAAAMAAAABAAsAAAABAAMAAAACAAsAAAABAAM
 tile_set = SubResource("TileSet_3si4x")
 
 [node name="Greeb" parent="." unique_id=104960465 instance=ExtResource("2_roof3")]
-position = Vector2(90, 60)
+position = Vector2(299, 92)
 
 [node name="Player_Character" parent="." unique_id=831168471 instance=ExtResource("3_8cadr")]
 position = Vector2(190, 162)

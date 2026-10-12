@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
 @export var AIR_ACCELERATION = 1500.0 # Isso pra conseguir se mover no ar
+@export var HP: int = 35
 
 var target: Vector2 #Serve para guardar a ultima posição que o player olhou
 @export var energy: int #eventualmente a vida
@@ -16,12 +17,18 @@ var armadillo_mode: bool #flag para verificar se está no modo normal ou bola
 @onready var player_collision = $PlayerCollision 
 @onready var armadillo_collision = $ArmadilloColision
 @onready var space_check = $SpaceCheck #Isso é um raycast para checar se o jogador sair do modo bola
+@onready var hitbox_player = $Hitbox_player
+@onready var hitbox_ball = $Hitbobx_ball
+@onready var energy_value = $Camera2D/Energy_Value
 
 func _ready() -> void:
 	target = Vector2.RIGHT
 	sprite.play("idle")
 	armadillo_upgrade = true
 	armadillo_mode = false 
+	hitbox_player.disable_mode = false
+	hitbox_ball.disable_mode = true
+	energy_value.text = str(HP)
 	
 
 func shoot() -> void:
@@ -58,12 +65,9 @@ func shoot() -> void:
 		bullet.traveled_distance = 0.0
 		bullet.is_destroing = false
 		#print("atirei")
-		
-		var return_bullet = func(): BulletPool.return_to_pool(bullet)
-		if not bullet.hit_or_fade.is_connected(return_bullet):
-			bullet.hit_or_fade.connect(return_bullet, CONNECT_ONE_SHOT)
 
 func _process(delta: float) -> void:
+	
 	if Input.is_action_just_pressed("shoot") and not armadillo_mode:
 		shoot()
 
@@ -94,6 +98,8 @@ func _player_process(delta: float) -> void:
 			sprite.play("armadillo_activation_left")
 		player_collision.disabled = true #desabilita a colisão normal do jogador
 		armadillo_collision.disabled = false #habilita a colisão de bola
+		hitbox_player.disable_mode = true
+		hitbox_ball.disable_mode = false
 		armadillo_mode = true 
 		
 	if not is_on_floor():
@@ -147,6 +153,8 @@ func _armadillo_process(delta: float) ->void:
 				sprite.play("armadillo_activation_left", 1, true)
 			armadillo_collision.disabled = true
 			player_collision.disabled = false
+			hitbox_player.disable_mode = false
+			hitbox_ball.disable_mode = true
 			armadillo_mode = false
 	
 	if not is_on_floor():
@@ -173,3 +181,14 @@ func _physics_process(delta: float) -> void:
 		_player_process(delta)
 	else:
 		_armadillo_process(delta)
+		
+
+func take_damage(recivied_damage:int)->void:
+	if recivied_damage > 0:
+		HP -= recivied_damage
+		energy_value.text = str(HP)
+
+func heal (recevied_healling:int) ->void:
+	if recevied_healling > 0:
+		HP += recevied_healling
+		energy_value.text = str(HP)

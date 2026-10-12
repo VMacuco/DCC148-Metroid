@@ -6,6 +6,7 @@ var direction: Vector2 = Vector2.RIGHT
 var max_projectile_distance: float
 var traveled_distance: float
 var is_destroing: bool
+@export var damage = 5
 
 
 
@@ -38,5 +39,6 @@ func destroy() ->void:
 	
 
 func _on_area_entered(area: Area2D) -> void:
-	destroy()
+	if area.collision_layer == 0 or area.collision_layer == 32:
+		destroy()
 	#print("bati")

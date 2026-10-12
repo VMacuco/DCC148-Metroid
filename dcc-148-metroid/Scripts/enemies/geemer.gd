@@ -10,22 +10,30 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 
 
+var inicial_position: Vector2
+
+
 enum State { PATROL, DEAD }
 var geemer_state: State = State.PATROL
 
 @onready var collision_box: CollisionShape2D = $CollisionShape2D
 
 
-
+func take_damage(recivied_damage: int)->void:
+	if recivied_damage > 0:
+		health -= recivied_damage
 
 func _ready() -> void:
 	geemer_state = State.PATROL
 	up_direction = Vector2.UP
+	health = 15.0
+	inicial_position = global_position
 	
 func _process(delta: float) -> void:
 	if geemer_state == State.PATROL:
 		sprite.play("move")
-		
+	if health <= 0:
+		geemer_state == State.DEAD
 
 func _physics_process(delta: float) -> void:
 	if geemer_state != State.PATROL:

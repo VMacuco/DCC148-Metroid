@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://lpalvnoxueqy" path="res://Scripts/enemies/geemer.gd" id="1_6l7tr"]
 [ext_resource type="Texture2D" uid="uid://cxxf7k87a4bef" path="res://Assets/Enemies/PNG/Wiggleton.png" id="1_e6b87"]
+[ext_resource type="Script" uid="uid://bj0mcqwyg0uyy" path="res://Scripts/hitbox_enemy.gd" id="3_64phc"]
+[ext_resource type="Script" uid="uid://cs6neo3js3ehm" path="res://Scripts/hurtbox_enemy.gd" id="4_dadwj"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6l7tr"]
 atlas = ExtResource("1_e6b87")
@@ -42,6 +44,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0i88t"]
 size = Vector2(23, 12)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckb4l"]
+size = Vector2(24, 13)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3si4x"]
+size = Vector2(20, 11)
+
 [node name="Geemer" type="CharacterBody2D" unique_id=104960465]
 collision_layer = 4
 script = ExtResource("1_6l7tr")
@@ -49,7 +57,7 @@ script = ExtResource("1_6l7tr")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=806521582]
 sprite_frames = SubResource("SpriteFrames_ckb4l")
 animation = &"move"
-frame_progress = 0.40417218
+frame_progress = 0.09770797
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=31957874]
 position = Vector2(0, -2)
@@ -64,3 +72,23 @@ collide_with_areas = true
 position = Vector2(8, 0)
 target_position = Vector2(0, 12)
 collide_with_areas = true
+
+[node name="hitbox_enemy" type="Area2D" parent="." unique_id=2040130048]
+collision_layer = 64
+collision_mask = 16
+script = ExtResource("3_64phc")
+metadata/_custom_type_script = "uid://bj0mcqwyg0uyy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_enemy" unique_id=816519759]
+position = Vector2(0, -2.5)
+shape = SubResource("RectangleShape2D_ckb4l")
+
+[node name="Hurtbox_enemy" type="Area2D" parent="." unique_id=2022891203]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("4_dadwj")
+metadata/_custom_type_script = "uid://cs6neo3js3ehm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox_enemy" unique_id=1873916823]
+position = Vector2(0, -1.5)
+shape = SubResource("RectangleShape2D_3si4x")

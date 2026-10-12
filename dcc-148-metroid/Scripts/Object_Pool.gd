@@ -15,7 +15,13 @@ func _ready() -> void:
 		objects[i].process_mode = Node.PROCESS_MODE_DISABLED
 		objects[i].hide()
 		add_child(objects[i])
+		
+		if objects[i].has_signal("hit_or_fade"):
+			objects[i].hit_or_fade.connect(return_to_pool.bind(objects[i]))
+		
 	available = pool_size
+	
+	
 
 func get_from_pool() -> Node2D:
 	if available <= 0:
@@ -33,8 +39,13 @@ func get_from_pool() -> Node2D:
 		
 	return obj
 
-func return_to_pool(obj: Node2D) -> void:
+func return_to_pool(obj:Node2D) -> void:
+	disable_and_store.call_deferred(obj)
+
+func disable_and_store(obj: Node2D) -> void:
 	obj.process_mode = Node.PROCESS_MODE_DISABLED
 	obj.hide()
+	if available >= pool_size:
+		return
 	objects[available] = obj
 	available += 1
