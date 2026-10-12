@@ -35,7 +35,7 @@ animations = [{
 "texture": SubResource("AtlasTexture_e51bj")
 }],
 "loop": 1,
-"name": &"default",
+"name": &"move",
 "speed": 5.0
 }]
 
@@ -43,20 +43,24 @@ animations = [{
 size = Vector2(23, 12)
 
 [node name="Geemer" type="CharacterBody2D" unique_id=104960465]
+collision_layer = 4
 script = ExtResource("1_6l7tr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=806521582]
 sprite_frames = SubResource("SpriteFrames_ckb4l")
-frame_progress = 0.17727995
+animation = &"move"
+frame_progress = 0.40417218
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=31957874]
-position = Vector2(-0.5, -2)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_0i88t")
 
-[node name="RayCast_Ground" type="RayCast2D" parent="." unique_id=874123329]
-position = Vector2(10, 5)
-target_position = Vector2(0, 9)
+[node name="RayCast2D_tras" type="RayCast2D" parent="." unique_id=417727343]
+position = Vector2(-8, 0)
+target_position = Vector2(0, 12)
+collide_with_areas = true
 
-[node name="RayCast_Wall" type="RayCast2D" parent="." unique_id=1389529659]
-position = Vector2(12, -2)
-target_position = Vector2(10, 0)
+[node name="RayCast2D_frente" type="RayCast2D" parent="." unique_id=1496455256]
+position = Vector2(8, 0)
+target_position = Vector2(0, 12)
+collide_with_areas = true
