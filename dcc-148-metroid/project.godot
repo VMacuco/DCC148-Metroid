@@ -59,11 +59,14 @@ shoot={
 
 [layer_names]
 
-2d_physics/layer_1="Player"
+2d_physics/layer_1="Mundo"
 2d_physics/layer_2="Projetil"
 2d_physics/layer_3="Inimigos"
-2d_physics/layer_5="Hitbox"
-2d_physics/layer_7="Hurtbox"
+2d_physics/layer_4="Player"
+2d_physics/layer_5="Hurtbox_player"
+2d_physics/layer_6="HurtBox_inimigo"
+2d_physics/layer_7="Hitbox_inimigo"
+2d_physics/layer_8="HitBox_player"
 
 [physics]
 

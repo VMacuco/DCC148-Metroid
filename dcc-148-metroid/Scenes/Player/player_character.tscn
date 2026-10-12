@@ -539,6 +539,7 @@ radius = 8.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckb4l"]
 
 [node name="Player_Character" type="CharacterBody2D" unique_id=831168471]
+collision_layer = 8
 script = ExtResource("1_fhr3q")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1169741703]
