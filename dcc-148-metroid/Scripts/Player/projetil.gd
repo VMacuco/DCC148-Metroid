@@ -6,7 +6,7 @@ var direction: Vector2 = Vector2.RIGHT
 var max_projectile_distance: float
 var traveled_distance: float
 var is_destroing: bool
-@export var damage = 5
+@export var contact_damage = 5
 
 
 
@@ -26,7 +26,6 @@ func _physics_process(delta: float) -> void:
 	global_position += direction * step
 	traveled_distance += step
 	
-	#Se o tiro percorreu uma distancia definida, ele emite o sinal para sair de cena
 	if traveled_distance >= max_projectile_distance:
 		destroy()
 
@@ -34,11 +33,15 @@ func destroy() ->void:
 	if is_destroing:
 		return
 	is_destroing = true
-	#print("sumi")
 	hit_or_fade.emit()
 	
 
+
+
 func _on_area_entered(area: Area2D) -> void:
-	if area.collision_layer == 0 or area.collision_layer == 32:
+	if area.collision_layer == 32:
 		destroy()
-	#print("bati")
+
+
+func _on_body_entered(body: Node2D) -> void:
+		destroy()

@@ -45,10 +45,10 @@ animations = [{
 size = Vector2(23, 12)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckb4l"]
-size = Vector2(24, 13)
+size = Vector2(20, 11)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3si4x"]
-size = Vector2(20, 11)
+size = Vector2(24, 13)
 
 [node name="Geemer" type="CharacterBody2D" unique_id=104960465]
 collision_layer = 4
@@ -80,7 +80,7 @@ script = ExtResource("3_64phc")
 metadata/_custom_type_script = "uid://bj0mcqwyg0uyy"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_enemy" unique_id=816519759]
-position = Vector2(0, -2.5)
+position = Vector2(0, -1.5)
 shape = SubResource("RectangleShape2D_ckb4l")
 
 [node name="Hurtbox_enemy" type="Area2D" parent="." unique_id=2022891203]
@@ -90,5 +90,5 @@ script = ExtResource("4_dadwj")
 metadata/_custom_type_script = "uid://cs6neo3js3ehm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox_enemy" unique_id=1873916823]
-position = Vector2(0, -1.5)
+position = Vector2(0, -2.5)
 shape = SubResource("RectangleShape2D_3si4x")

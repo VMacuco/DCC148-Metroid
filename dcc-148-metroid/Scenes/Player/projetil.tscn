@@ -56,3 +56,4 @@ frame_progress = 0.27622196
 shape = SubResource("CircleShape2D_ckb4l")
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
