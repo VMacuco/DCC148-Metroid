@@ -7,7 +7,9 @@ var max_projectile_distance: float
 var traveled_distance: float
 var is_destroing: bool
 @export var contact_damage = 5
+var entity
 
+ 
 
 
 # Called when the node enters the scene tree for the first time.
@@ -16,6 +18,13 @@ func _ready() -> void:
 	projectile_speed = 300
 	max_projectile_distance = 50
 	is_destroing = false
+	entity = get_parent().get_parent()
+	if entity is Player:
+		set_collision_layer_value(2, true)
+		set_collision_mask_value(6, true)
+	else:
+		set_collision_layer_value(7, true)
+		set_collision_mask_value(5, true)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _physics_process(delta: float) -> void:
