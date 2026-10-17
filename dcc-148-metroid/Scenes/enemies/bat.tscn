@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bgtiy5q4wuflx" path="res://Assets/Enemies/PNG/Bloodsiphon.png" id="1_pb2o4"]
 [ext_resource type="Script" uid="uid://hcge4q580aqb" path="res://Scripts/enemies/bat.gd" id="1_tofr1"]
+[ext_resource type="Script" uid="uid://bj0mcqwyg0uyy" path="res://Scripts/hitbox_enemy.gd" id="3_txle6"]
+[ext_resource type="Script" uid="uid://cs6neo3js3ehm" path="res://Scripts/hurtbox_enemy.gd" id="4_m0ns3"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tofr1"]
 atlas = ExtResource("1_pb2o4")
@@ -176,11 +178,19 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_g6tdp"]
-radius = 13.0
-height = 32.0
+height = 28.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_g6tdp"]
 size = Vector2(126, 532)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jts06"]
+size = Vector2(479, 534)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m0ns3"]
+radius = 14.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_txle6"]
+radius = 17.0
 
 [node name="Skree" type="CharacterBody2D" unique_id=721509695]
 script = ExtResource("1_tofr1")
@@ -191,12 +201,47 @@ sprite_frames = SubResource("SpriteFrames_b0ua7")
 animation = &"explode"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1944406014]
+position = Vector2(0, 1)
 shape = SubResource("CapsuleShape2D_g6tdp")
 
 [node name="TriggerArea" type="Area2D" parent="." unique_id=132272434]
+collision_layer = 0
+collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea" unique_id=101439481]
 position = Vector2(1, 265)
 shape = SubResource("RectangleShape2D_g6tdp")
 
+[node name="TriggerArea2" type="Area2D" parent="." unique_id=2119173677]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea2" unique_id=49670433]
+position = Vector2(4.5, 268)
+shape = SubResource("RectangleShape2D_jts06")
+
+[node name="hitbox_enemy" type="Area2D" parent="." unique_id=742239229]
+collision_layer = 64
+collision_mask = 16
+script = ExtResource("3_txle6")
+metadata/_custom_type_script = "uid://bj0mcqwyg0uyy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_enemy" unique_id=1788863354]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_m0ns3")
+debug_color = Color(1, 0.0052555413, 0.08369998, 0.41960785)
+
+[node name="Hurtbox_enemy" type="Area2D" parent="." unique_id=1064231753]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("4_m0ns3")
+metadata/_custom_type_script = "uid://cs6neo3js3ehm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox_enemy" unique_id=1736415963]
+position = Vector2(0, 4)
+shape = SubResource("CircleShape2D_txle6")
+debug_color = Color(0.7502537, 0.20147192, 0.99999994, 0.41960785)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="body_entered" from="TriggerArea" to="." method="_on_trigger_area_body_entered"]
+[connection signal="body_entered" from="TriggerArea2" to="." method="_on_trigger_area_2_body_entered"]

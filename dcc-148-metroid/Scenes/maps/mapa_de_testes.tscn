@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://ck7brmt3n00tu" path="res://Assets/Tiles/Void_Docking_Facility_Tileset_16X16.png" id="1_fna85"]
 [ext_resource type="PackedScene" uid="uid://etdtgcull8xn" path="res://Scenes/enemies/Geemer.tscn" id="2_roof3"]
 [ext_resource type="PackedScene" uid="uid://c7i5020v66xfl" path="res://Scenes/Player/player_character.tscn" id="3_8cadr"]
+[ext_resource type="PackedScene" uid="uid://cdh0wfknxsb3s" path="res://Scenes/enemies/bat.tscn" id="4_8cadr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8cadr"]
 texture = ExtResource("1_fna85")
@@ -278,3 +279,6 @@ position = Vector2(299, 92)
 
 [node name="Player_Character" parent="." unique_id=831168471 instance=ExtResource("3_8cadr")]
 position = Vector2(190, 162)
+
+[node name="Skree" parent="." unique_id=721509695 instance=ExtResource("4_8cadr")]
+position = Vector2(285, -26)
