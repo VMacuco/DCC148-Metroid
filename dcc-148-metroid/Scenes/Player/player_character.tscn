@@ -532,13 +532,16 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ckb4l"]
-radius = 8.0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_64phc"]
+size = Vector2(16, 34.888893)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0i88t"]
 radius = 8.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ckb4l"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ckb4l"]
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ckb4l"]
 radius = 8.0
@@ -546,13 +549,17 @@ radius = 8.0
 [node name="Player_Character" type="CharacterBody2D" unique_id=831168471]
 collision_layer = 8
 script = ExtResource("1_fhr3q")
+SPEED = 100.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1169741703]
 sprite_frames = SubResource("SpriteFrames_0i88t")
 animation = &"idle_right"
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=606383757]
-shape = SubResource("CapsuleShape2D_ckb4l")
+visible = false
+position = Vector2(0, 1)
+scale = Vector2(0.81, 0.9)
+shape = SubResource("RectangleShape2D_64phc")
 
 [node name="ArmadilloColision" type="CollisionShape2D" parent="." unique_id=874208935]
 position = Vector2(0, 8)
@@ -561,7 +568,6 @@ shape = SubResource("CircleShape2D_0i88t")
 disabled = true
 
 [node name="SpaceCheck" type="ShapeCast2D" parent="." unique_id=2139386218]
-visible = false
 scale = Vector2(0.5, 1.5)
 shape = SubResource("RectangleShape2D_ckb4l")
 target_position = Vector2(0, 0)
@@ -573,6 +579,7 @@ pool_size = 10
 metadata/_custom_type_script = "uid://cwcb3lgto4v5n"
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1559384563]
+offset = Vector2(0, -50)
 zoom = Vector2(2.5, 2.5)
 
 [node name="Energy_label" type="Label" parent="Camera2D" unique_id=747290842]
@@ -580,9 +587,9 @@ anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = -192.0
-offset_top = -77.0
+offset_top = -152.0
 offset_right = -162.0
-offset_bottom = -61.0
+offset_bottom = -136.0
 grow_vertical = 2
 rotation = 0.0031833649
 size_flags_horizontal = 0
@@ -590,10 +597,10 @@ theme_override_font_sizes/font_size = 8
 text = "Energy:"
 
 [node name="Energy_Value" type="Label" parent="Camera2D" unique_id=1799713178]
-offset_left = -155.0
-offset_top = -77.0
-offset_right = -115.0
-offset_bottom = -54.0
+offset_left = -160.0
+offset_top = -152.0
+offset_right = -120.0
+offset_bottom = -129.0
 theme_override_font_sizes/font_size = 8
 text = "35"
 
@@ -603,6 +610,7 @@ collision_mask = 64
 script = ExtResource("19_hxr7e")
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="Hitbox_player" unique_id=1488605444]
+visible = false
 shape = SubResource("CapsuleShape2D_ckb4l")
 
 [node name="Hitbobx_ball" type="Area2D" parent="." unique_id=1743853474]

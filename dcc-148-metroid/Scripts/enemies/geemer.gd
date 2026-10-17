@@ -79,12 +79,12 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		
 	
-	elif (not raycast_tras.is_colliding()) and (not raycast_frente.is_colliding()):
+	if (not raycast_tras.is_colliding()) and (not raycast_frente.is_colliding()):
 		velocity = Vector2.ZERO
 		#print("estou na beirada")
 		rotate(PI/2)
 		up_direction = up_direction.rotated(PI/2)
-		global_position += (transform.x * 21) + (transform.y * 21)
+		global_position += (transform.x * 14) + (transform.y * 14)
 		#print("up_direction: ", up_direction)
 		#print("velocidade no momento que vira:", velocity)
 	

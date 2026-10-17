@@ -51,6 +51,7 @@ size = Vector2(20, 11)
 size = Vector2(24, 13)
 
 [node name="Geemer" type="CharacterBody2D" unique_id=104960465]
+scale = Vector2(0.8, 0.8)
 collision_layer = 4
 script = ExtResource("1_6l7tr")
 
