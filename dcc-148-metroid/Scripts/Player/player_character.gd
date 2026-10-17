@@ -5,12 +5,15 @@ extends CharacterBody2D
 @export var JUMP_VELOCITY = -400.0
 @export var AIR_ACCELERATION = 1500.0 # Isso pra conseguir se mover no ar
 @export var HP: int = 35
+@export var shoot_delay = 0.5
+var shoot_timer = 0.0
 
 var target: Vector2 #Serve para guardar a ultima posição que o player olhou
 @export var energy: int #eventualmente a vida
 
 @onready var sprite = $AnimatedSprite2D
 @onready var BulletPool = $BulletPool
+
 
 var armadillo_upgrade: bool #Variavel para guardar se pegou ou não o upgrade da bola, não sei se vamos usar
 var armadillo_mode: bool #flag para verificar se está no modo normal ou bola
@@ -21,6 +24,7 @@ var armadillo_mode: bool #flag para verificar se está no modo normal ou bola
 @onready var hitbox_ball = $Hitbobx_ball
 @onready var energy_value = $Camera2D/Energy_Value
 
+
 func _ready() -> void:
 	target = Vector2.RIGHT
 	sprite.play("idle")
@@ -29,7 +33,7 @@ func _ready() -> void:
 	hitbox_player.disable_mode = false
 	hitbox_ball.disable_mode = true
 	energy_value.text = str(HP)
-	
+
 
 func shoot() -> void:
 	var shoot_dir: Vector2
@@ -67,9 +71,13 @@ func shoot() -> void:
 		#print("atirei")
 
 func _process(delta: float) -> void:
+	if shoot_timer > 0.0:
+		shoot_timer -= delta
 	
-	if Input.is_action_just_pressed("shoot") and not armadillo_mode:
+	if Input.is_action_pressed("shoot") and shoot_timer <= 0.0 and not armadillo_mode:
 		shoot()
+		shoot_timer = shoot_delay
+		
 
 #processos do jogador no modo normal
 func _player_process(delta: float) -> void:
@@ -88,6 +96,10 @@ func _player_process(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
+	#Corta a velociade vertical do pulo se soltar o botão muito cedo
+	if Input.is_action_just_released("jump") and velocity.y < 0.0:
+		velocity.y *= 0.5 
+	
 	
 	#Se apertar seta pra baixo, vira bola
 	if Input.is_action_just_pressed("ball") and armadillo_upgrade:
