@@ -4,7 +4,7 @@ signal hp_changed(new_hp: int)
 signal player_died
 
 var MAX_HP: int = 99
-var inicial_hp: int = 15
+var inicial_hp: int = 35
 var armadillo_upgarade: bool = false
 var last_door: bool = false
 var immortal_mode: bool = false

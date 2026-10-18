@@ -21,6 +21,7 @@ SceneManager="*uid://5xwquslcyf45"
 GameMannager="*uid://dg37hijut4p2a"
 LootMannager="*uid://bnh11koa75yem"
 CheatEngine="*uid://cl1hxhiuitla4"
+CanvasLayerGlobal="*uid://c72auoacoyev6"
 
 [display]
 

@@ -62,9 +62,11 @@ func go_to_idle_state() -> void:
 	normal = Vector2.ZERO
 	sprite.play("idle")
 	
+	
 func go_to_dive_state() -> void:
 	mosquito_state = State.dive
 	sprite.play("dive")
+	
 	
 func go_to_walk_state() -> void:
 	#calcula o vetor espelhado a ser usado em bounce
@@ -79,6 +81,7 @@ func go_to_walk_state() -> void:
 	sprite.play("walk")
 	#simplificação: aqui o walk dura entre 0 e 1s (gerado aleatoriamente)
 	walk_timer = randf_range(0.0, 1.0)
+	
 
 func go_to_bounce_state() -> void:
 	mosquito_state = State.bounce
