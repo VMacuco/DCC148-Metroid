@@ -10,9 +10,10 @@ enum State{
 	explode,
 	dead
 }
-
+#tempo entre um mergulho e outro (vai aumentando)
+var dx : float = 0.3
 #velocidade do mergulho, a definir
-const SPEED_DIVING = 300.0
+var speed_diving: float = 150.0
 # guarda o vetor que aponta o player
 var dive_direction: Vector2 = Vector2.ZERO 
 # guarda a posição do player
@@ -20,7 +21,7 @@ var target_position: Vector2 = Vector2.ZERO
 
 var bat_state: State = State.idle
 
-var life: float = 15.0	
+var life: float = 10.0	
 
 func _ready() -> void:
 	trigger_area_2.disabled = true
@@ -61,6 +62,8 @@ func go_to_explode_state() -> void:
 	
 func go_to_dead_state() -> void:
 	bat_state = State.dead
+	#resetar dx
+	dx = 0.3
 	queue_free()
 	
 func _idle_state() -> void: 
@@ -68,7 +71,7 @@ func _idle_state() -> void:
 	
 	
 func _dive_state() -> void: 
-	velocity = dive_direction*SPEED_DIVING
+	velocity = dive_direction*speed_diving
 	move_and_slide()
 	if is_on_floor():
 		go_to_explode_state()
@@ -89,10 +92,13 @@ func take_damage(recivied_damage: int)->void:
 		go_to_dead_state()
 	
 func _wait_for_redirect() -> void:
-	await get_tree().create_timer(0.1).timeout
-	# Só ativa o alerta se ele ainda estiver caindo (não explodiu antes dos 0.5s)
-	if bat_state == State.dive:
-		trigger_area_2.set_deferred("disabled", false)
+	while bat_state == State.dive: 
+		await get_tree().create_timer(dx).timeout
+	# só ativa se tiver no estado de dive (pode morrer durante o mergulho e
+	# durante a expera do timer)
+		if bat_state == State.dive:
+			dx = 2*dx
+			trigger_area_2.set_deferred("disabled", false)
 	
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if bat_state == State.explode:
