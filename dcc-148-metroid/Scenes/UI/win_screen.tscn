@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://da3sh8tieroiw"]
+
+[ext_resource type="Texture2D" uid="uid://0xhivkd3kyxy" path="res://Assets/background/fundo.jpg" id="1_x8fnd"]
+[ext_resource type="FontFile" uid="uid://boe80dquuwr0m" path="res://Assets/fonts/8-bit Arcade In.ttf" id="2_hf3wf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x8fnd"]
+font = ExtResource("2_hf3wf")
+font_size = 150
+font_color = Color(0.7058824, 0.9098039, 1, 1)
+
+[node name="win_screen" type="Control" unique_id=492516640]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1606761726]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_x8fnd")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=1851250441]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=2086454613]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=442189182]
+layout_mode = 2
+text = "Vitória!"
+label_settings = SubResource("LabelSettings_x8fnd")
+
+[node name="Retry" type="Button" parent="MarginContainer/VBoxContainer" unique_id=351286959]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Retry"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1475297478]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Exit"

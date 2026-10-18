@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://c6c04y3po73hi"]
+
+[ext_resource type="Texture2D" uid="uid://0xhivkd3kyxy" path="res://Assets/background/fundo.jpg" id="1_jxkuk"]
+[ext_resource type="FontFile" uid="uid://boe80dquuwr0m" path="res://Assets/fonts/8-bit Arcade In.ttf" id="2_wpaxx"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_g6tdp"]
+font = ExtResource("2_wpaxx")
+font_size = 150
+font_color = Color(0.7058824, 0.9098039, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_i2yjh"]
+font = ExtResource("2_wpaxx")
+font_size = 35
+font_color = Color(0.7058824, 0.9098039, 1, 1)
+
+[sub_resource type="Theme" id="Theme_wpaxx"]
+Button/fonts/font = ExtResource("2_wpaxx")
+
+[sub_resource type="Theme" id="Theme_jqelu"]
+Button/fonts/font = ExtResource("2_wpaxx")
+
+[sub_resource type="FontVariation" id="FontVariation_wpaxx"]
+base_font = ExtResource("2_wpaxx")
+
+[node name="game_over" type="Control" unique_id=2119930047]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=2061734136]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_jxkuk")
+expand_mode = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=482279332]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=149750289]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+
+[node name="Title" type="Label" parent="MarginContainer/VBoxContainer" unique_id=933133470]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Derrota!"
+label_settings = SubResource("LabelSettings_g6tdp")
+horizontal_alignment = 1
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer" unique_id=234483196]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "\"Try again. Fail again. Fail better.\""
+label_settings = SubResource("LabelSettings_i2yjh")
+
+[node name="Retry" type="Button" parent="MarginContainer/VBoxContainer" unique_id=636130150]
+layout_mode = 2
+theme = SubResource("Theme_wpaxx")
+text = "Retry
+"
+
+[node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1925231518]
+layout_mode = 2
+theme = SubResource("Theme_jqelu")
+theme_override_fonts/font = SubResource("FontVariation_wpaxx")
+text = "Exit
+"

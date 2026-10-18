@@ -13,7 +13,7 @@ enum State{
 
 signal died
 #velocidade do mergulho e bounce
-var speed: float = 150.0
+var speed: float = 120.0
 #velocidade do walk
 var walk_speed : float = 50.0
 #aponta p/ player
