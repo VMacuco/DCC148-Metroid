@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://c72auoacoyev6"]
+
+[ext_resource type="Shader" uid="uid://b87kn52eq72gg" path="res://Scripts/shadder/new_shader.gdshader" id="1_65ief"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0i88t"]
+shader = ExtResource("1_65ief")
+shader_parameter/game_resolution = Vector2(460.8, 259.2)
+shader_parameter/curvature = 0.050000002375
+shader_parameter/scanline_strength = 0.25
+shader_parameter/mask_strength = 0.15
+shader_parameter/aberration = 0.0015
+shader_parameter/vignette_strength = 0.150000007125
+shader_parameter/brightness = 1.15
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1368568193]
+layer = 100
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1447010137]
+material = SubResource("ShaderMaterial_0i88t")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 6
+mouse_filter = 2
