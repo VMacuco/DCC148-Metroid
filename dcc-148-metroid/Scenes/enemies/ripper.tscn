@@ -72,7 +72,7 @@ radius = 9.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_g6tdp"]
 radius = 8.0
 
-[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1194331759]
+[node name="ripper" type="CharacterBody2D" unique_id=1194331759]
 collision_layer = 4
 script = ExtResource("1_tin08")
 
