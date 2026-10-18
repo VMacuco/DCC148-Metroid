@@ -193,6 +193,7 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(recivied_damage:int)->void:
 	if recivied_damage > 0:
+		print("[Player] take_damage(", recivied_damage, ") chamado por frame=", Engine.get_physics_frames())
 		GameMannager.player_hp -= recivied_damage
 		energy_value.text = str(GameMannager.player_hp)
 

@@ -1,7 +1,7 @@
 extends Node
 
 var player_hp: int
-var inicial_hp: int = 35
+var inicial_hp: int = 15
 var armadillo_upgarade: bool = false
 var last_door: bool = false
 

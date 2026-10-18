@@ -9,6 +9,7 @@ extends CharacterBody2D
 
 @onready var sprite = $AnimatedSprite2D
 
+signal died
 
 var inicial_position: Vector2
 
@@ -26,7 +27,9 @@ func take_damage(recivied_damage: int)->void:
 		health -= recivied_damage
 	if health <= 0:
 		geemer_state = State.DEAD
+		died.emit()
 		killing_geemer()
+		
 
 func _ready() -> void:
 	geemer_state = State.PATROL

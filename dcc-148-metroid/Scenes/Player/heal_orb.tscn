@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dnvdigj2guv6a"]
+
+[ext_resource type="Script" uid="uid://cruwmwkbafgx2" path="res://Scripts/Player/heal_orb.gd" id="1_bm465"]
+[ext_resource type="Texture2D" uid="uid://luasfrrn4amq" path="res://Assets/Items/Red/PNG/Cross.png" id="1_olq5w"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0i88t"]
+radius = 7.0
+
+[node name="Heal_Orb" type="Area2D" unique_id=293651289]
+scale = Vector2(1.2, 1.2)
+collision_mask = 8
+script = ExtResource("1_bm465")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1938446370]
+texture = ExtResource("1_olq5w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1740328104]
+shape = SubResource("CircleShape2D_0i88t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

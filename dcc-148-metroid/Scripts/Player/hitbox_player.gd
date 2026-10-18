@@ -11,8 +11,13 @@ func _physics_process(delta: float) -> void:
 	if invenssible or disable_mode:
 		return
 	for area in get_overlapping_areas():
+		print("[Hurtbox] overlap: ", area.name,
+		" | layer=", area.collision_layer,
+		" | mask=", area.collision_mask,
+		" | parent=", area.get_parent().name if area.get_parent() else "null")
 		if area.collision_layer == 64:
 			if get_parent().has_method("take_damage"):
+				print("[Hurtbox] DANO de ", area.name)
 				get_parent().take_damage(area.contact_damage)
 				start_invencibility()
 				break
