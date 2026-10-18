@@ -337,6 +337,11 @@ tile_set = SubResource("TileSet_0i88t")
 
 [node name="Player_Character" parent="." unique_id=831168471 instance=ExtResource("2_ofw23")]
 position = Vector2(425, -624)
+JUMP_VELOCITY = -400.0
+AIR_ACCELERATION = 1500.0
+shoot_delay = 0.25
+death_screen_delay = 0.5
+energy = 0
 
 [node name="Geemer" parent="." unique_id=104960465 instance=ExtResource("3_ofw23")]
 position = Vector2(345, -611)
@@ -386,5 +391,5 @@ position = Vector2(185, -569)
 [node name="CharacterBody2D2" parent="." unique_id=1513429606 instance=ExtResource("7_jc35v")]
 position = Vector2(280.62933, -377.56378)
 
-[node name="CharacterBody2D" parent="CharacterBody2D2" unique_id=1280731473 instance=ExtResource("7_jc35v")]
-position = Vector2(-1.5394592, 336.11847)
+[node name="CharacterBody2D3" parent="." unique_id=1280731473 instance=ExtResource("7_jc35v")]
+position = Vector2(279.08987, -41.445313)

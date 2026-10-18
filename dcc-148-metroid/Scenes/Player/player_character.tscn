@@ -11,8 +11,10 @@
 [ext_resource type="Texture2D" uid="uid://dfj0av4a35l8m" path="res://Assets/Player/Additional_Player_Animation/Void_Additional_Player_Animation/Red/PNG/Voidster_Armadillo_R.png" id="4_hxr7e"]
 [ext_resource type="Texture2D" uid="uid://17axt8dibkl8" path="res://Assets/Player/PNG/Red/Voidster_Jump_R.png" id="5_6e1h8"]
 [ext_resource type="Texture2D" uid="uid://be4atbm1yj5xd" path="res://Assets/Player/Additional_Player_Animation/Void_Additional_Player_Animation/Red/PNG/Voidster_Crouch_R.png" id="5_l7sqk"]
+[ext_resource type="Texture2D" uid="uid://brq0caqdj4jm8" path="res://Assets/Player/Additional_Player_Animation/Void_Additional_Player_Animation/Red/PNG/Voidster_Damage_R.png" id="6_g2c4d"]
 [ext_resource type="Texture2D" uid="uid://c41tbabxf11nf" path="res://Assets/Player/PNG/Red/Voidster_Double_Jump_R.png" id="6_qsqtf"]
 [ext_resource type="Texture2D" uid="uid://bfigs8cgjuihb" path="res://Assets/Player/PNG/Red/Voidster_Run_L.png" id="7_nvc3x"]
+[ext_resource type="Texture2D" uid="uid://bdm7447mqh5cr" path="res://Assets/Player/Additional_Player_Animation/Void_Additional_Player_Animation/Red/PNG/Voidster_Damage_L.png" id="7_taal2"]
 [ext_resource type="Texture2D" uid="uid://dgyxe3ygio7ow" path="res://Assets/Player/PNG/Red/Voidster_Run_R.png" id="8_6k8qh"]
 [ext_resource type="Texture2D" uid="uid://djwyf4mepy7mi" path="res://Assets/Player/Additional_Player_Animation/Void_Additional_Player_Animation/Red/PNG/Voidster_Run_L.png" id="10_qsqtf"]
 [ext_resource type="Texture2D" uid="uid://bwseehjka7mjh" path="res://Assets/Player/Additional_Player_Animation/Void_Additional_Player_Animation/Red/PNG/Voidster_Run_R.png" id="12_nvc3x"]
@@ -102,6 +104,22 @@ region = Rect2(128, 0, 32, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_l4xr3"]
 atlas = ExtResource("4_hxr7e")
 region = Rect2(160, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_neu61"]
+atlas = ExtResource("6_g2c4d")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n386"]
+atlas = ExtResource("7_taal2")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vahgx"]
+atlas = ExtResource("5_l7sqk")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yoe5p"]
+atlas = ExtResource("5_l7sqk")
+region = Rect2(0, 0, 32, 48)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6k8qh"]
 atlas = ExtResource("2_6e1h8")
@@ -369,6 +387,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_neu61")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6n386")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vahgx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yoe5p")
+}],
+"loop": 0,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_6k8qh")
 }],
 "loop": 0,
@@ -590,10 +625,17 @@ radius = 8.0
 collision_layer = 8
 script = ExtResource("1_fhr3q")
 SPEED = 100.0
+JUMP_VELOCITY = null
+AIR_ACCELERATION = null
+shoot_delay = null
+death_screen_delay = null
+energy = null
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1169741703]
 sprite_frames = SubResource("SpriteFrames_0i88t")
-animation = &"taking_damage_right"
+animation = &"death"
+frame = 3
+frame_progress = 1.0
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=606383757]
 visible = false

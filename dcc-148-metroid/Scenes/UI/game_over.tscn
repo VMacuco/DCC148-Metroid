@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://c6c04y3po73hi"]
 
+[ext_resource type="Script" uid="uid://rfvl1prs2hlj" path="res://Scenes/UI/game_over.gd" id="1_jqelu"]
 [ext_resource type="Texture2D" uid="uid://0xhivkd3kyxy" path="res://Assets/background/fundo.jpg" id="1_jxkuk"]
 [ext_resource type="FontFile" uid="uid://boe80dquuwr0m" path="res://Assets/fonts/8-bit Arcade In.ttf" id="2_wpaxx"]
 
@@ -31,6 +32,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_jqelu")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=2061734136]
 layout_mode = 0
@@ -79,3 +81,5 @@ theme = SubResource("Theme_jqelu")
 theme_override_fonts/font = SubResource("FontVariation_wpaxx")
 text = "Exit
 "
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]

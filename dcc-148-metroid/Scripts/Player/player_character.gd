@@ -5,7 +5,8 @@ extends CharacterBody2D
 @export var JUMP_VELOCITY = -400.0
 @export var AIR_ACCELERATION = 1500.0 # Isso pra conseguir se mover no ar
 @export var shoot_delay = 0.25
-var shoot_timer = 0.0
+@export var death_screen_delay := 1.0
+var shoot_timer := 0.0
 
 var target: Vector2 #Serve para guardar a ultima posição que o player olhou
 @export var energy: int #eventualmente a vida
@@ -32,6 +33,8 @@ func _ready() -> void:
 	hitbox_player.disable_mode = false
 	hitbox_ball.disable_mode = true
 	is_taking_damage = false
+	
+	GameMannager.player_died.connect(_on_player_died)
 
 
 func shoot() -> void:
@@ -238,5 +241,18 @@ func play_intro_scene(duration: float = 2.0)->void:
 	sprite.modulate.a = 1.0
 	spawn_locked = false
 	
+func _on_player_died()->void:
+	spawn_locked = true
+	is_taking_damage = false
+	sprite.modulate.a = 1.0
 	
+	hitbox_player.disable_mode = true
+	hitbox_ball.disable_mode = true
+	
+	
+	var tween = create_tween()
+	tween.tween_callback(func(): sprite.play("death"))
+	await tween.finished
+	await get_tree().create_timer(death_screen_delay).timeout
+	get_tree().change_scene_to_file.call_deferred("res://Scenes/UI/game_over.tscn")
 	

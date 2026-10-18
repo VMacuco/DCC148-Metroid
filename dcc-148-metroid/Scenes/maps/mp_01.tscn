@@ -335,6 +335,11 @@ use_kinematic_bodies = true
 
 [node name="Player_Character" parent="." unique_id=831168471 instance=ExtResource("2_y6ogi")]
 position = Vector2(236, 224)
+JUMP_VELOCITY = -400.0
+AIR_ACCELERATION = 1500.0
+shoot_delay = 0.25
+death_screen_delay = 1.0
+energy = 0
 
 [node name="Geemer" parent="." unique_id=104960465 instance=ExtResource("3_y6ogi")]
 position = Vector2(312, 110)

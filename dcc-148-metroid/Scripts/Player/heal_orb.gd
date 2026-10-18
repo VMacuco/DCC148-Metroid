@@ -1,6 +1,6 @@
 extends Area2D
 
-@export var Healing: int = 45
+@export var Healing: int = 15
 
 
 func _on_body_entered(body: Node2D) -> void:
