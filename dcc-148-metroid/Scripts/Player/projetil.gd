@@ -15,7 +15,7 @@ var entity
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	traveled_distance = 0
-	projectile_speed = 300
+	projectile_speed = 150
 	max_projectile_distance = 50
 	is_destroing = false
 	entity = get_parent().get_parent()
