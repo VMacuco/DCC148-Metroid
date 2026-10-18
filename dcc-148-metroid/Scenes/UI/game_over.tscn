@@ -14,9 +14,11 @@ font_size = 35
 font_color = Color(0.7058824, 0.9098039, 1, 1)
 
 [sub_resource type="Theme" id="Theme_wpaxx"]
+default_font_size = 50
 Button/fonts/font = ExtResource("2_wpaxx")
 
 [sub_resource type="Theme" id="Theme_jqelu"]
+Button/font_sizes/font_size = 50
 Button/fonts/font = ExtResource("2_wpaxx")
 
 [sub_resource type="FontVariation" id="FontVariation_wpaxx"]

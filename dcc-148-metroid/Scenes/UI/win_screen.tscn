@@ -8,6 +8,14 @@ font = ExtResource("2_hf3wf")
 font_size = 150
 font_color = Color(0.7058824, 0.9098039, 1, 1)
 
+[sub_resource type="Theme" id="Theme_wpaxx"]
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("2_hf3wf")
+
+[sub_resource type="Theme" id="Theme_jqelu"]
+Button/font_sizes/font_size = 50
+Button/fonts/font = ExtResource("2_hf3wf")
+
 [node name="win_screen" type="Control" unique_id=492516640]
 layout_mode = 3
 anchors_preset = 15
@@ -45,10 +53,12 @@ label_settings = SubResource("LabelSettings_x8fnd")
 
 [node name="Retry" type="Button" parent="MarginContainer/VBoxContainer" unique_id=351286959]
 layout_mode = 2
+theme = SubResource("Theme_wpaxx")
 theme_override_font_sizes/font_size = 50
 text = "Retry"
 
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1475297478]
 layout_mode = 2
+theme = SubResource("Theme_jqelu")
 theme_override_font_sizes/font_size = 50
 text = "Exit"
