@@ -4,22 +4,24 @@ extends CharacterBody2D
 @export var health: float = 15.0
 @export var aderency: float = 30.0
 
-@onready var raycast_tras = $RayCast2D_tras
-@onready var raycast_frente = $RayCast2D_frente
-
+@onready var ray_floor = $RayCast2D_floor
+@onready var ray_wall = $RayCast2D_wall
 @onready var sprite = $AnimatedSprite2D
 
 signal died
-
 var inicial_position: Vector2
-
 
 enum State { PATROL, DEAD }
 var geemer_state: State = State.PATROL
 
 @onready var collision_box: CollisionShape2D = $CollisionShape2D
+@onready var radius: float = (collision_box.shape as CircleShape2D).radius
 @onready var hitbox: hitbox_enemy = $hitbox_enemy
 @onready var hurtbox: Hurtbox_enemy = $Hurtbox_enemy
+
+const MIN_TURN_DISTANCE := 3.0
+var lock_until_floor := false
+var distance_since_turn := 999.0
 
 
 func take_damage(recivied_damage: int)->void:
@@ -32,10 +34,16 @@ func take_damage(recivied_damage: int)->void:
 		
 
 func _ready() -> void:
+	motion_mode = CharacterBody2D.MOTION_MODE_FLOATING
 	geemer_state = State.PATROL
-	up_direction = Vector2.UP
 	health = 15.0
 	inicial_position = global_position
+
+	# Raycasts curtos, saindo do centro
+	ray_floor.position = Vector2.ZERO
+	ray_floor.target_position = Vector2(0, radius + 4)
+	ray_wall.position = Vector2.ZERO
+	ray_wall.target_position = Vector2(radius + 2, 0)
 	
 func _process(delta: float) -> void:
 	if geemer_state == State.PATROL:
@@ -68,27 +76,49 @@ func killing_geemer()->void:
 func _physics_process(delta: float) -> void:
 	if geemer_state != State.PATROL:
 		return
-	
-	var down_velocity = transform.y * aderency
-	var right_velocity = transform.x * SPEED
-	
-	velocity = (right_velocity + down_velocity)
-	#print("Velocidade padrão:", velocity)
-	
-	if is_on_wall():
-		#print("estou na parede")
-		rotate(-PI/2)
-		up_direction = get_wall_normal()
-		velocity = Vector2.ZERO
-		
-	
-	elif (not raycast_tras.is_colliding()) and (not raycast_frente.is_colliding()):
-		velocity = Vector2.ZERO
-		#print("estou na beirada")
-		rotate(PI/2)
-		up_direction = up_direction.rotated(PI/2)
-		global_position += (transform.x * 14) + (transform.y * 14)
-		#print("up_direction: ", up_direction)
-		#print("velocidade no momento que vira:", velocity)
-	
+
+	ray_floor.force_raycast_update()
+	ray_wall.force_raycast_update()
+
+	# Depois de uma curva externa, só permite outra quando achar chão de novo
+	if lock_until_floor and ray_floor.is_colliding():
+		lock_until_floor = false
+
+	if distance_since_turn >= MIN_TURN_DISTANCE:
+		if ray_wall.is_colliding():
+			_turn_inner()
+		elif not lock_until_floor and not ray_floor.is_colliding():
+			_turn_outer()
+
+	velocity = transform.x * SPEED + transform.y * aderency
+	var before := global_position
 	move_and_slide()
+	distance_since_turn += before.distance_to(global_position)
+	
+func _turn_inner() -> void:
+	# Parede à frente vira o novo chão
+	rotate(-PI / 2)
+	_after_turn()
+
+func _turn_outer() -> void:
+	# Contorna a quina: leva o centro para o lado da nova superfície
+	global_position += transform.x * radius + transform.y * radius
+	rotate(PI / 2)
+	_after_turn()
+	lock_until_floor = true
+
+func _after_turn() -> void:
+	rotation = snappedf(rotation, PI / 2)
+	distance_since_turn = 0.0
+	_snap_to_surface()
+
+func _snap_to_surface() -> void:
+	var query := PhysicsRayQueryParameters2D.create(
+		global_position,
+		global_position + transform.y * (radius * 2.0),
+		collision_mask,
+		[get_rid()]
+	)
+	var hit := get_world_2d().direct_space_state.intersect_ray(query)
+	if hit:
+		global_position = hit.position - transform.y * (radius + 0.5)
