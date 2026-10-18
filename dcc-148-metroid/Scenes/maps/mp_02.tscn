@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c7i5020v66xfl" path="res://Scenes/Player/player_character.tscn" id="2_ofw23"]
 [ext_resource type="PackedScene" uid="uid://etdtgcull8xn" path="res://Scenes/enemies/Geemer.tscn" id="3_ofw23"]
 [ext_resource type="PackedScene" uid="uid://d0hs3yh1rprdw" path="res://Scenes/maps/porta.tscn" id="4_gy3ba"]
+[ext_resource type="PackedScene" uid="uid://1wcjgtxkbl2r" path="res://Scenes/hud.tscn" id="6_kopqh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_gy3ba"]
 texture = ExtResource("1_8ogq7")
@@ -375,3 +376,5 @@ target_spawn = "Spawn_from_02"
 position = Vector2(472, -631)
 linked_scene = "res://Scenes/maps/mp_03.tscn"
 target_spawn = "Spawn_from_02"
+
+[node name="HUD" parent="." unique_id=1946283739 instance=ExtResource("6_kopqh")]

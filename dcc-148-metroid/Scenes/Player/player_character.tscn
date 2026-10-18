@@ -18,6 +18,8 @@
 [ext_resource type="Texture2D" uid="uid://bwseehjka7mjh" path="res://Assets/Player/Additional_Player_Animation/Void_Additional_Player_Animation/Red/PNG/Voidster_Run_R.png" id="12_nvc3x"]
 [ext_resource type="Script" uid="uid://cwcb3lgto4v5n" path="res://Scripts/Object_Pool.gd" id="13_nvc3x"]
 [ext_resource type="PackedScene" uid="uid://bqmm8fdm7wv1k" path="res://Scenes/Player/projetil.tscn" id="14_6k8qh"]
+[ext_resource type="Texture2D" uid="uid://b5fj21yc1c36w" path="res://Assets/Player/Additional_Player_Animation/Red/PNG/Voidster_Damage_L.png" id="17_lpea1"]
+[ext_resource type="Texture2D" uid="uid://bgxpqhol7panh" path="res://Assets/Player/Additional_Player_Animation/Red/PNG/Voidster_Damage_R.png" id="18_j3mym"]
 [ext_resource type="Script" uid="uid://wi5o7hee33dd" path="res://Scripts/Player/hitbox_player.gd" id="19_hxr7e"]
 [ext_resource type="Script" uid="uid://8dniqi8xpkd1" path="res://Scripts/Player/hitbobx_ball.gd" id="20_l7sqk"]
 
@@ -256,6 +258,22 @@ region = Rect2(576, 0, 32, 48)
 [sub_resource type="AtlasTexture" id="AtlasTexture_4g0g2"]
 atlas = ExtResource("12_nvc3x")
 region = Rect2(608, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6aeki"]
+atlas = ExtResource("17_lpea1")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x7njx"]
+atlas = ExtResource("17_lpea1")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x00hv"]
+atlas = ExtResource("18_j3mym")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cdto1"]
+atlas = ExtResource("18_j3mym")
+region = Rect2(32, 0, 32, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0i88t"]
 animations = [{
@@ -530,6 +548,28 @@ animations = [{
 "loop": 1,
 "name": &"run_right_look_up",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6aeki")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x7njx")
+}],
+"loop": 0,
+"name": &"taking_damage_left",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x00hv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cdto1")
+}],
+"loop": 0,
+"name": &"taking_damage_right",
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_64phc"]
@@ -553,7 +593,7 @@ SPEED = 100.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1169741703]
 sprite_frames = SubResource("SpriteFrames_0i88t")
-animation = &"idle_right"
+animation = &"taking_damage_right"
 
 [node name="PlayerCollision" type="CollisionShape2D" parent="." unique_id=606383757]
 visible = false
@@ -581,28 +621,6 @@ metadata/_custom_type_script = "uid://cwcb3lgto4v5n"
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1559384563]
 offset = Vector2(0, -50)
 zoom = Vector2(2.5, 2.5)
-
-[node name="Energy_label" type="Label" parent="Camera2D" unique_id=747290842]
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = -192.0
-offset_top = -152.0
-offset_right = -162.0
-offset_bottom = -136.0
-grow_vertical = 2
-rotation = 0.0031833649
-size_flags_horizontal = 0
-theme_override_font_sizes/font_size = 8
-text = "Energy:"
-
-[node name="Energy_Value" type="Label" parent="Camera2D" unique_id=1799713178]
-offset_left = -160.0
-offset_top = -152.0
-offset_right = -120.0
-offset_bottom = -129.0
-theme_override_font_sizes/font_size = 8
-text = "35"
 
 [node name="Hitbox_player" type="Area2D" parent="." unique_id=2147108744]
 collision_layer = 128

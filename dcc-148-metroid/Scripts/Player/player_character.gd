@@ -15,12 +15,12 @@ var target: Vector2 #Serve para guardar a ultima posição que o player olhou
 
 
 var armadillo_mode: bool #flag para verificar se está no modo normal ou bola
+var is_taking_damage: bool
 @onready var player_collision = $PlayerCollision 
 @onready var armadillo_collision = $ArmadilloColision
 @onready var space_check = $SpaceCheck #Isso é um raycast para checar se o jogador sair do modo bola
 @onready var hitbox_player = $Hitbox_player
 @onready var hitbox_ball = $Hitbobx_ball
-@onready var energy_value = $Camera2D/Energy_Value
 
 
 func _ready() -> void:
@@ -29,6 +29,7 @@ func _ready() -> void:
 	armadillo_mode = false 
 	hitbox_player.disable_mode = false
 	hitbox_ball.disable_mode = true
+	is_taking_damage = false
 
 
 func shoot() -> void:
@@ -113,33 +114,34 @@ func _player_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += get_gravity().y * delta
 
-	if is_on_floor():
-		if is_moving:
-			velocity.x = move_direction * SPEED
+	if not is_taking_damage:
+		if is_on_floor():
+			if is_moving:
+				velocity.x = move_direction * SPEED
+			else:
+				velocity.x = 0 #se você para no chão, para na hora, sem inercia
 		else:
-			velocity.x = 0 #se você para no chão, para na hora, sem inercia
-	else:
-		#no ar você tem inercia
-		if is_moving:
-			velocity.x = move_toward(velocity.x, move_direction * SPEED, AIR_ACCELERATION * delta)
+			#no ar você tem inercia
+			if is_moving:
+				velocity.x = move_toward(velocity.x, move_direction * SPEED, AIR_ACCELERATION * delta)
 	
 	#Troca as animações das sprites
-	if not is_on_floor():
-		if is_moving:
-			sprite.play("jump_long_right" if looking_right else "jump_long_left")
-		else:
-			sprite.play("jump_right" if looking_right else "jump_left")
-	else:
-		if is_moving:
-			if looking_up:
-				sprite.play("run_right_look_up" if looking_right else "run_left_look_up")
+		if not is_on_floor():
+			if is_moving:
+				sprite.play("jump_long_right" if looking_right else "jump_long_left")
 			else:
-				sprite.play("run_right" if looking_right else "run_left")
+				sprite.play("jump_right" if looking_right else "jump_left")
 		else:
-			if looking_up:
-				sprite.play("idle_right_look_up" if looking_right else "idle_left_look_up")
+			if is_moving:
+				if looking_up:
+					sprite.play("run_right_look_up" if looking_right else "run_left_look_up")
+				else:
+					sprite.play("run_right" if looking_right else "run_left")
 			else:
-				sprite.play("idle_right" if looking_right else "idle_left")
+				if looking_up:
+					sprite.play("idle_right_look_up" if looking_right else "idle_left_look_up")
+				else:
+					sprite.play("idle_right" if looking_right else "idle_left")
 	
 	move_and_slide()
 
@@ -192,12 +194,19 @@ func _physics_process(delta: float) -> void:
 		
 
 func take_damage(recivied_damage:int)->void:
-	if recivied_damage > 0:
-		print("[Player] take_damage(", recivied_damage, ") chamado por frame=", Engine.get_physics_frames())
-		GameMannager.player_hp -= recivied_damage
-		energy_value.text = str(GameMannager.player_hp)
+	if recivied_damage <= 0:
+		return
+	is_taking_damage = true
+		
+	GameMannager.player_hp -= recivied_damage
+		
+	var tween =  create_tween()
+	tween.tween_callback(func(): sprite.play("taking_damage_right"))
+	tween.tween_interval(0.5)
+	await tween.finished
+	is_taking_damage = false
 
 func heal (recevied_healling:int) ->void:
-	if recevied_healling > 0:
-		GameMannager.player_hp += recevied_healling
-		energy_value.text = str(GameMannager.player_hp)
+	if recevied_healling <= 0:
+		return
+	GameMannager.player_hp += recevied_healling

@@ -1,0 +1,47 @@
+[gd_scene format=3 uid="uid://1wcjgtxkbl2r"]
+
+[ext_resource type="Script" uid="uid://dgcl1xwj033lt" path="res://Scripts/hud.gd" id="1_bjfho"]
+[ext_resource type="Texture2D" uid="uid://i4k3bohbd4ab" path="res://Assets/HUD/Red/PNG/Energy_Text.png" id="2_6fbih"]
+[ext_resource type="FontFile" uid="uid://bdmb5stwx2my8" path="res://Assets/HUD/PressStart2P-Regular.ttf" id="3_t1xeu"]
+
+[node name="HUD" type="CanvasLayer" unique_id=1946283739]
+script = ExtResource("1_bjfho")
+
+[node name="MarginContainer" type="MarginContainer" parent="." unique_id=980307375]
+offset_right = 528.0
+offset_bottom = 322.0
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer" unique_id=1863442797]
+layout_mode = 2
+theme_override_constants/separation = 4
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="MarginContainer/VBoxContainer" unique_id=269517309]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=986652282]
+texture_filter = 1
+custom_minimum_size = Vector2(64, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+texture = ExtResource("2_6fbih")
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer2" unique_id=1703364527]
+custom_minimum_size = Vector2(32, 8)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_colors/font_shadow_color = Color(0, 0, 0.85456854, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("3_t1xeu")
+theme_override_font_sizes/font_size = 22
+text = "00"
+horizontal_alignment = 1
+vertical_alignment = 1

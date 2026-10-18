@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://etdtgcull8xn" path="res://Scenes/enemies/Geemer.tscn" id="2_y73hw"]
 [ext_resource type="PackedScene" uid="uid://d0hs3yh1rprdw" path="res://Scenes/maps/porta.tscn" id="4_y73hw"]
 [ext_resource type="PackedScene" uid="uid://doipgfstjw46y" path="res://Scenes/maps/utima_porta.tscn" id="6_amt5k"]
+[ext_resource type="PackedScene" uid="uid://1wcjgtxkbl2r" path="res://Scenes/hud.tscn" id="7_gtdcb"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y73hw"]
 texture = ExtResource("1_qnhw5")
@@ -282,7 +283,6 @@ texture = ExtResource("1_qnhw5")
 10:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 11:12/0 = 0
 12:12/0 = 0
-12:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 13:12/0 = 0
 13:12/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 14:12/0 = 0
@@ -365,7 +365,7 @@ scale = Vector2(0.64000005, 0.64000005)
 position = Vector2(295, 205)
 
 [node name="Player_Character" parent="." unique_id=831168471 instance=ExtResource("2_q5fck")]
-position = Vector2(286, 796)
+position = Vector2(1323, 671)
 
 [node name="Geemer2" parent="." unique_id=817209165 instance=ExtResource("2_y73hw")]
 position = Vector2(424, 205)
@@ -404,3 +404,5 @@ rotation = 3.1415927
 
 [node name="Geemer_final_test" parent="." unique_id=2002842073 instance=ExtResource("2_y73hw")]
 position = Vector2(231, 749)
+
+[node name="HUD" parent="." unique_id=1946283739 instance=ExtResource("7_gtdcb")]
