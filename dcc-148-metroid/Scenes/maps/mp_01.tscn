@@ -341,9 +341,6 @@ shoot_delay = 0.25
 death_screen_delay = 1.0
 energy = 0
 
-[node name="Geemer" parent="Player_Character" unique_id=104960465 instance=ExtResource("3_y6ogi")]
-position = Vector2(157, -149)
-
 [node name="Geemer" parent="." unique_id=954842158 instance=ExtResource("3_y6ogi")]
 position = Vector2(312, 110)
 
@@ -374,3 +371,6 @@ position = Vector2(700, 76)
 
 [node name="Skree2" parent="." unique_id=160199704 instance=ExtResource("7_ad2qg")]
 position = Vector2(911, 75)
+
+[node name="Geemer4" parent="." unique_id=104960465 instance=ExtResource("3_y6ogi")]
+position = Vector2(393, 75)
