@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://d0hs3yh1rprdw" path="res://Scenes/maps/porta.tscn" id="4_y73hw"]
 [ext_resource type="PackedScene" uid="uid://doipgfstjw46y" path="res://Scenes/maps/utima_porta.tscn" id="6_amt5k"]
 [ext_resource type="PackedScene" uid="uid://1wcjgtxkbl2r" path="res://Scenes/hud.tscn" id="7_gtdcb"]
+[ext_resource type="PackedScene" uid="uid://cdh0wfknxsb3s" path="res://Scenes/enemies/bat.tscn" id="8_rmiuf"]
+[ext_resource type="PackedScene" uid="uid://c2k5fvaxdfkh1" path="res://Scenes/enemies/ripper.tscn" id="9_pgd7y"]
+[ext_resource type="PackedScene" uid="uid://cog4q77tx7bkw" path="res://Scenes/enemies/mosquito.tscn" id="10_nag5n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y73hw"]
 texture = ExtResource("1_qnhw5")
@@ -338,7 +341,7 @@ sources/0 = SubResource("TileSetAtlasSource_y73hw")
 
 [node name="mp_03" type="Node2D" unique_id=566500285 node_paths=PackedStringArray("target_enemy")]
 script = ExtResource("1_12yg5")
-target_enemy = NodePath("Geemer_final_test")
+target_enemy = NodePath("mosquito")
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1662832824]
 position = Vector2(-2, 0)
@@ -365,7 +368,7 @@ scale = Vector2(0.64000005, 0.64000005)
 position = Vector2(295, 205)
 
 [node name="Player_Character" parent="." unique_id=831168471 instance=ExtResource("2_q5fck")]
-position = Vector2(1323, 671)
+position = Vector2(408, 798)
 
 [node name="Geemer2" parent="." unique_id=817209165 instance=ExtResource("2_y73hw")]
 position = Vector2(424, 205)
@@ -402,7 +405,34 @@ target_spawn = "Spawn_from_03"
 position = Vector2(38, 600)
 rotation = 3.1415927
 
-[node name="Geemer_final_test" parent="." unique_id=2002842073 instance=ExtResource("2_y73hw")]
-position = Vector2(231, 749)
-
 [node name="HUD" parent="." unique_id=1946283739 instance=ExtResource("7_gtdcb")]
+
+[node name="Skree" parent="." unique_id=721509695 instance=ExtResource("8_rmiuf")]
+position = Vector2(938, 90)
+
+[node name="Skree2" parent="." unique_id=1780583418 instance=ExtResource("8_rmiuf")]
+position = Vector2(1630, 91)
+
+[node name="Skree3" parent="." unique_id=414436834 instance=ExtResource("8_rmiuf")]
+position = Vector2(1872, 90)
+
+[node name="CharacterBody2D" parent="." unique_id=1194331759 instance=ExtResource("9_pgd7y")]
+position = Vector2(2149, 505)
+
+[node name="CharacterBody2D2" parent="." unique_id=1898606632 instance=ExtResource("9_pgd7y")]
+position = Vector2(2089, 677)
+
+[node name="CharacterBody2D3" parent="." unique_id=748743976 instance=ExtResource("9_pgd7y")]
+position = Vector2(2165, 359)
+
+[node name="Skree4" parent="." unique_id=1330704934 instance=ExtResource("8_rmiuf")]
+position = Vector2(1560, 719)
+
+[node name="Skree5" parent="." unique_id=922893760 instance=ExtResource("8_rmiuf")]
+position = Vector2(1823, 719)
+
+[node name="Skree6" parent="." unique_id=1317909597 instance=ExtResource("8_rmiuf")]
+position = Vector2(1691, 723)
+
+[node name="mosquito" parent="." unique_id=1114293030 instance=ExtResource("10_nag5n")]
+position = Vector2(265, 520)
