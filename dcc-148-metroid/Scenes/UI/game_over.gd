@@ -9,3 +9,7 @@ func _on_retry_pressed() -> void:
 	get_tree().paused = false
 	GameMannager.game_restart()
 	SceneManager.change_map("res://Scenes/maps/mp_01.tscn", "Spawn_from_start")
+
+
+func _on_exit_button_up() -> void:
+	get_tree().quit()

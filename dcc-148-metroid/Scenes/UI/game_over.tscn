@@ -83,3 +83,4 @@ text = "Exit
 "
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Retry" to="." method="_on_retry_pressed"]
+[connection signal="button_up" from="MarginContainer/VBoxContainer/Exit" to="." method="_on_exit_button_up"]

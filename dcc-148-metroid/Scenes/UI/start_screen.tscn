@@ -1,6 +1,7 @@
 [gd_scene format=4 uid="uid://dcdvluvmgbcef"]
 
 [ext_resource type="Texture2D" uid="uid://0xhivkd3kyxy" path="res://Assets/background/fundo.jpg" id="1_iwgee"]
+[ext_resource type="Script" uid="uid://d25bqp44cu2ja" path="res://Scripts/UI/start_screen.gd" id="1_px0ht"]
 [ext_resource type="FontFile" uid="uid://boe80dquuwr0m" path="res://Assets/fonts/8-bit Arcade In.ttf" id="2_3l4er"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3l4er"]
@@ -9308,6 +9309,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_px0ht")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1463196514]
 layout_mode = 0
@@ -9345,3 +9347,5 @@ label_settings = SubResource("LabelSettings_iwgee")
 layout_mode = 2
 theme = SubResource("Theme_3l4er")
 text = "Start"
+
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Start" to="." method="_on_start_button_down"]

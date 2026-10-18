@@ -1,10 +1,10 @@
 class_name Player
 extends CharacterBody2D
 
-@export var SPEED = 300.0
-@export var JUMP_VELOCITY = -400.0
-@export var AIR_ACCELERATION = 1500.0 # Isso pra conseguir se mover no ar
-@export var shoot_delay = 0.25
+@export var SPEED:float = 300.0
+@export var JUMP_VELOCITY:float = -400.0
+@export var AIR_ACCELERATION: float = 1500.0
+@export var shoot_delay:float = 0.25
 @export var death_screen_delay := 1.0
 var shoot_timer := 0.0
 
