@@ -353,3 +353,6 @@ position = Vector2(1128, 145)
 position = Vector2(1160, 138)
 linked_scene = "res://Scenes/maps/mp_02.tscn"
 target_spawn = "Spawn_from_01"
+
+[node name="Upgrade" type="Marker2D" parent="." unique_id=282752244]
+position = Vector2(56, 174)

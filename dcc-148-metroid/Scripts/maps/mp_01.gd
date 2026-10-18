@@ -1,5 +1,7 @@
 extends Node2D
 
+const armadillo_upgrade := preload("res://Scenes/Player/armadillo_upgrade.tscn")
+@onready var upgrade_pos = $Upgrade
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -8,3 +10,7 @@ func _ready() -> void:
 		var player = find_child("Player_Character", true, false)
 		if spawn_point and player:
 			player.global_position = spawn_point.global_position
+	if not GameMannager.armadillo_upgarade:
+		var upgrade: Area2D = armadillo_upgrade.instantiate()
+		upgrade.position = upgrade_pos.position
+		add_child(upgrade)

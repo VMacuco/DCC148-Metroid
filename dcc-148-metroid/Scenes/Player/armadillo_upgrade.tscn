@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://du1dvio8hbcns"]
+
+[ext_resource type="Script" uid="uid://o1kpbtk2s70e" path="res://Scripts/Player/armadillo_upgrade.gd" id="1_wddvo"]
+[ext_resource type="Texture2D" uid="uid://dwgwmuj01k47e" path="res://Assets/Items/Red/Ball_Upgrade.png" id="2_428u6"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7urxv"]
+size = Vector2(16, 16)
+
+[node name="Armadillo_Upgrade" type="Area2D" unique_id=1440952514 groups=["Player"]]
+collision_mask = 8
+script = ExtResource("1_wddvo")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1556189712]
+texture = ExtResource("2_428u6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1866458011]
+shape = SubResource("RectangleShape2D_7urxv")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
