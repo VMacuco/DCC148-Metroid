@@ -3,6 +3,8 @@ extends CharacterBody2D
 @onready var trigger_area_1 = $TriggerArea/CollisionShape2D
 @onready var trigger_area_2 = $TriggerArea2/CollisionShape2D
 
+@export var bat_projectile_scene: PackedScene = preload("res://Scenes/enemies/bullet.tscn")
+
 signal died
 
 enum State{
@@ -92,7 +94,22 @@ func _dead_state() -> void:
 	pass
 	
 func spawn_bullets() -> void:
-	pass
+	if not bat_projectile_scene:
+		return
+
+	var directions: Array[Vector2] = [
+	 Vector2(-1, -1).normalized(),
+	 Vector2(1, -1).normalized(),
+	 Vector2(-1, 1).normalized(),
+	 Vector2(1, 1).normalized() ]
+
+	for dir in directions:
+		var projectile = bat_projectile_scene.instantiate()
+		projectile.direction = dir
+		projectile.global_position = global_position
+		projectile.rotation = dir.angle()
+		
+		get_tree().current_scene.add_child(projectile)
 	
 func take_damage(recivied_damage: int)->void:
 	if recivied_damage > 0:
