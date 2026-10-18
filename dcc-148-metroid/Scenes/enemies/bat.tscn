@@ -193,6 +193,7 @@ radius = 14.0
 radius = 17.0
 
 [node name="Skree" type="CharacterBody2D" unique_id=721509695]
+collision_layer = 4
 script = ExtResource("1_tofr1")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1981862811]

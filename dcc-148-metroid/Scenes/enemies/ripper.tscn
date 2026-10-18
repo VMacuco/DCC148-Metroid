@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://c2k5fvaxdfkh1"]
+
+[ext_resource type="Script" uid="uid://cg0vy56abunla" path="res://Scripts/enemies/ripper.gd" id="1_tin08"]
+[ext_resource type="Texture2D" uid="uid://bwr0xqsclfosg" path="res://Assets/Enemies/PNG/Void_Plasm.png" id="2_2ub8j"]
+[ext_resource type="Script" uid="uid://bj0mcqwyg0uyy" path="res://Scripts/hitbox_enemy.gd" id="3_bekpf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2ub8j"]
+atlas = ExtResource("2_2ub8j")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bekpf"]
+atlas = ExtResource("2_2ub8j")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oqig4"]
+atlas = ExtResource("2_2ub8j")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k80of"]
+atlas = ExtResource("2_2ub8j")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56v0u"]
+atlas = ExtResource("2_2ub8j")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mnhiy"]
+atlas = ExtResource("2_2ub8j")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8q2w7"]
+atlas = ExtResource("2_2ub8j")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_g6tdp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2ub8j")
+}],
+"loop": 0,
+"name": &"colide",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bekpf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oqig4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k80of")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56v0u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mnhiy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8q2w7")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bekpf"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g6tdp"]
+radius = 8.0
+
+[node name="CharacterBody2D" type="CharacterBody2D" unique_id=1194331759]
+collision_layer = 4
+script = ExtResource("1_tin08")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1240487836]
+sprite_frames = SubResource("SpriteFrames_g6tdp")
+animation = &"walk"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=875760977]
+shape = SubResource("CircleShape2D_bekpf")
+
+[node name="hitbox_enemy" type="Area2D" parent="." unique_id=1410056351]
+collision_layer = 64
+collision_mask = 16
+script = ExtResource("3_bekpf")
+metadata/_custom_type_script = "uid://bj0mcqwyg0uyy"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox_enemy" unique_id=555811824]
+shape = SubResource("CircleShape2D_g6tdp")
+debug_color = Color(0.99365026, 0, 0.24130145, 0.41960785)

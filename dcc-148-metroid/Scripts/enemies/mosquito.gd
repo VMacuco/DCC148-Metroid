@@ -20,7 +20,7 @@ var dive_direction: Vector2 = Vector2.ZERO
 # posição do player
 var target_position: Vector2 = Vector2.ZERO
 var mosquito_state: State = State.idle
-var life: float = 15.0
+var life: float = 20.0
 # referencia ao player para o walk state saber p/ onde andar
 var player: Node2D = null
 #timer para a duração do walk (varia em sorteio)
@@ -145,6 +145,8 @@ func _on_trigger_area_body_entered(body: Node2D) -> void:
 			inaccuracy = 15
 		elif distance_x < 0:
 			inaccuracy = -15	
+		elif distance_x == 0:
+			inaccuracy = randf_range(-15,15)
 			
 		dive_direction = (target_position - global_position).normalized()
 		# só pra garantir que o intervalo em randf fica certinho

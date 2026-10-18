@@ -186,9 +186,10 @@ size = Vector2(16, 8)
 size = Vector2(20, 15)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_b0ua7"]
-size = Vector2(303.5, 212)
+size = Vector2(524.875, 279.5)
 
 [node name="mosquito" type="CharacterBody2D" unique_id=1114293030]
+collision_layer = 4
 script = ExtResource("1_3iwrv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1248184384]
@@ -224,7 +225,7 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TriggerArea" unique_id=926193980]
-position = Vector2(0, 106)
+position = Vector2(0, 140)
 shape = SubResource("RectangleShape2D_b0ua7")
 
 [connection signal="body_entered" from="TriggerArea" to="." method="_on_trigger_area_body_entered"]
