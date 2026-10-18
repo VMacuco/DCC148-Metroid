@@ -10,6 +10,11 @@ func _ready() -> void:
 		var player = find_child("Player_Character", true, false)
 		if spawn_point and player:
 			player.global_position = spawn_point.global_position
+	if SceneManager.target_spawn == "Spawn_from_start":
+		var player = find_child("Player_Character", true, false)
+		if player: 
+			player.play_intro_scene()
+	
 	if not GameMannager.armadillo_upgarade:
 		var upgrade: Area2D = armadillo_upgrade.instantiate()
 		upgrade.position = upgrade_pos.position

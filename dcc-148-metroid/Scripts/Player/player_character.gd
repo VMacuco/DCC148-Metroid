@@ -16,6 +16,8 @@ var target: Vector2 #Serve para guardar a ultima posição que o player olhou
 
 var armadillo_mode: bool #flag para verificar se está no modo normal ou bola
 var is_taking_damage: bool
+var spawn_locked: bool = false
+
 @onready var player_collision = $PlayerCollision 
 @onready var armadillo_collision = $ArmadilloColision
 @onready var space_check = $SpaceCheck #Isso é um raycast para checar se o jogador sair do modo bola
@@ -71,7 +73,7 @@ func _process(delta: float) -> void:
 	if shoot_timer > 0.0:
 		shoot_timer -= delta
 	
-	if Input.is_action_pressed("shoot") and shoot_timer <= 0.0 and not armadillo_mode:
+	if Input.is_action_pressed("shoot") and shoot_timer <= 0.0 and not armadillo_mode and not spawn_locked:
 		shoot()
 		shoot_timer = shoot_delay
 		
@@ -187,6 +189,14 @@ func _armadillo_process(delta: float) ->void:
 	move_and_slide()
 
 func _physics_process(delta: float) -> void:
+	if spawn_locked:
+		# Deixa a gravidade assentar o player no chão, mas ignora qualquer input
+		if not is_on_floor():
+			velocity.y += get_gravity().y * delta
+		velocity.x = 0.0
+		move_and_slide()
+		return
+	
 	if not armadillo_mode:
 		_player_process(delta)
 	else:
@@ -194,7 +204,7 @@ func _physics_process(delta: float) -> void:
 		
 
 func take_damage(recivied_damage:int)->void:
-	if recivied_damage <= 0:
+	if recivied_damage <= 0 or spawn_locked:
 		return
 	is_taking_damage = true
 		
@@ -210,3 +220,23 @@ func heal (recevied_healling:int) ->void:
 	if recevied_healling <= 0:
 		return
 	GameMannager.player_hp += recevied_healling
+
+func play_intro_scene(duration: float = 2.0)->void:
+	spawn_locked = true
+	velocity = Vector2.ZERO
+	sprite.play("idle")
+	
+	var blink_count = 5
+	var step = duration / float(blink_count * 2)
+	
+	var tween = create_tween()
+	for i in blink_count:
+		tween.tween_property(sprite,"modulate:a", 0.0, step)
+		tween.tween_property(sprite, "modulate:a", 1.0, step)
+		
+	await tween.finished
+	sprite.modulate.a = 1.0
+	spawn_locked = false
+	
+	
+	
