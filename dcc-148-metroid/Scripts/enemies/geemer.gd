@@ -79,7 +79,7 @@ func _physics_process(delta: float) -> void:
 		velocity = Vector2.ZERO
 		
 	
-	if (not raycast_tras.is_colliding()) and (not raycast_frente.is_colliding()):
+	elif (not raycast_tras.is_colliding()) and (not raycast_frente.is_colliding()):
 		velocity = Vector2.ZERO
 		#print("estou na beirada")
 		rotate(PI/2)

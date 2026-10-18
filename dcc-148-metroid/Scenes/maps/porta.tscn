@@ -1,0 +1,88 @@
+[gd_scene format=3 uid="uid://d0hs3yh1rprdw"]
+
+[ext_resource type="Script" uid="uid://c0xv7gbe2hfvo" path="res://porta.gd" id="1_7ixky"]
+[ext_resource type="Texture2D" uid="uid://db180tbnhf1pw" path="res://Assets/Tiles/Door_Open_Animation.png" id="2_0sokm"]
+[ext_resource type="Script" uid="uid://cs6neo3js3ehm" path="res://Scripts/hurtbox_enemy.gd" id="3_6mug1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ijfip"]
+atlas = ExtResource("2_0sokm")
+region = Rect2(48, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cm282"]
+atlas = ExtResource("2_0sokm")
+region = Rect2(16, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v0jm1"]
+atlas = ExtResource("2_0sokm")
+region = Rect2(32, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pywl5"]
+atlas = ExtResource("2_0sokm")
+region = Rect2(48, 0, 16, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5jdnv"]
+atlas = ExtResource("2_0sokm")
+region = Rect2(0, 0, 16, 48)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_0i88t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ijfip")
+}],
+"loop": 1,
+"name": &"Aberta",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cm282")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v0jm1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pywl5")
+}],
+"loop": 0,
+"name": &"Abertura",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5jdnv")
+}],
+"loop": 1,
+"name": &"Fechada",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ckb4l"]
+size = Vector2(22, 44)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0i88t"]
+size = Vector2(20, 44)
+
+[node name="Porta" type="Area2D" unique_id=773472239]
+collision_mask = 8
+script = ExtResource("1_7ixky")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=552834787]
+sprite_frames = SubResource("SpriteFrames_0i88t")
+animation = &"Aberta"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1514326733]
+position = Vector2(-3, 0)
+shape = SubResource("RectangleShape2D_ckb4l")
+
+[node name="Hurtbox_enemy" type="Area2D" parent="." unique_id=161815578]
+collision_layer = 32
+collision_mask = 2
+script = ExtResource("3_6mug1")
+metadata/_custom_type_script = "uid://cs6neo3js3ehm"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox_enemy" unique_id=425028559]
+position = Vector2(-7, 0)
+shape = SubResource("RectangleShape2D_0i88t")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

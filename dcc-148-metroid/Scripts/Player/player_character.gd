@@ -4,8 +4,7 @@ extends CharacterBody2D
 @export var SPEED = 300.0
 @export var JUMP_VELOCITY = -400.0
 @export var AIR_ACCELERATION = 1500.0 # Isso pra conseguir se mover no ar
-@export var HP: int = 35
-@export var shoot_delay = 0.5
+@export var shoot_delay = 0.25
 var shoot_timer = 0.0
 
 var target: Vector2 #Serve para guardar a ultima posição que o player olhou
@@ -15,7 +14,6 @@ var target: Vector2 #Serve para guardar a ultima posição que o player olhou
 @onready var BulletPool = $BulletPool
 
 
-var armadillo_upgrade: bool #Variavel para guardar se pegou ou não o upgrade da bola, não sei se vamos usar
 var armadillo_mode: bool #flag para verificar se está no modo normal ou bola
 @onready var player_collision = $PlayerCollision 
 @onready var armadillo_collision = $ArmadilloColision
@@ -28,11 +26,9 @@ var armadillo_mode: bool #flag para verificar se está no modo normal ou bola
 func _ready() -> void:
 	target = Vector2.RIGHT
 	sprite.play("idle")
-	armadillo_upgrade = true
 	armadillo_mode = false 
 	hitbox_player.disable_mode = false
 	hitbox_ball.disable_mode = true
-	energy_value.text = str(HP)
 
 
 func shoot() -> void:
@@ -102,7 +98,7 @@ func _player_process(delta: float) -> void:
 	
 	
 	#Se apertar seta pra baixo, vira bola
-	if Input.is_action_just_pressed("ball") and armadillo_upgrade:
+	if Input.is_action_just_pressed("ball") and GameMannager.armadillo_upgarade:
 		#Animação, não funcional no momento, talvez nunca esteje funcional para fins de fidelidade
 		if looking_right:
 			sprite.play("armadillo_activation_right")
@@ -197,10 +193,10 @@ func _physics_process(delta: float) -> void:
 
 func take_damage(recivied_damage:int)->void:
 	if recivied_damage > 0:
-		HP -= recivied_damage
-		energy_value.text = str(HP)
+		GameMannager.player_hp -= recivied_damage
+		energy_value.text = str(GameMannager.player_hp)
 
 func heal (recevied_healling:int) ->void:
 	if recevied_healling > 0:
-		HP += recevied_healling
-		energy_value.text = str(HP)
+		GameMannager.player_hp += recevied_healling
+		energy_value.text = str(GameMannager.player_hp)

@@ -546,7 +546,7 @@ radius = 8.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ckb4l"]
 radius = 8.0
 
-[node name="Player_Character" type="CharacterBody2D" unique_id=831168471]
+[node name="Player_Character" type="CharacterBody2D" unique_id=831168471 groups=["Player"]]
 collision_layer = 8
 script = ExtResource("1_fhr3q")
 SPEED = 100.0

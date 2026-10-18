@@ -15,6 +15,11 @@ run/main_scene="uid://de21yfi5pep1w"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+SceneManager="*uid://5xwquslcyf45"
+GameMannager="*uid://dg37hijut4p2a"
+
 [display]
 
 window/stretch/mode="canvas_items"
@@ -23,6 +28,10 @@ window/stretch/aspect="expand"
 [editor]
 
 movie_writer/movie_file="C:/Users/Pichau/Documents/GD/Sumas.avi"
+
+[global_group]
+
+Player=""
 
 [input]
 

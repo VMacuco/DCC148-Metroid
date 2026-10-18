@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://etdtgcull8xn" path="res://Scenes/enemies/Geemer.tscn" id="2_roof3"]
 [ext_resource type="PackedScene" uid="uid://c7i5020v66xfl" path="res://Scenes/Player/player_character.tscn" id="3_8cadr"]
 [ext_resource type="PackedScene" uid="uid://cdh0wfknxsb3s" path="res://Scenes/enemies/bat.tscn" id="4_8cadr"]
+[ext_resource type="PackedScene" uid="uid://d0hs3yh1rprdw" path="res://Scenes/maps/porta.tscn" id="5_fpoc0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8cadr"]
 texture = ExtResource("1_fna85")
@@ -282,3 +283,6 @@ position = Vector2(190, 162)
 
 [node name="Skree" parent="." unique_id=721509695 instance=ExtResource("4_8cadr")]
 position = Vector2(285, -26)
+
+[node name="Porta" parent="." unique_id=773472239 instance=ExtResource("5_fpoc0")]
+position = Vector2(447, 152)
