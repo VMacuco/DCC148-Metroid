@@ -192,7 +192,7 @@ radius = 14.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_txle6"]
 radius = 17.0
 
-[node name="Skree" type="CharacterBody2D" unique_id=721509695]
+[node name="Skree" type="CharacterBody2D" unique_id=721509695 groups=["Enemy"]]
 collision_layer = 4
 script = ExtResource("1_tofr1")
 

@@ -11,6 +11,7 @@ enum State{
 	dead
 }
 
+signal died
 #velocidade do mergulho e bounce
 var speed: float = 150.0
 #velocidade do walk
@@ -81,6 +82,7 @@ func go_to_bounce_state() -> void:
 	
 func go_to_dead_state() -> void:
 	mosquito_state  = State.dead
+	died.emit()
 	queue_free()
 	
 func _idle_state() -> void:

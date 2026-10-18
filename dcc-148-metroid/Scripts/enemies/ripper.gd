@@ -29,8 +29,9 @@ func go_to_colide_state()-> void:
 	velocity = Vector2.ZERO
 	sprite.play("colide")
 	
-	#timer para tocar o frame de colide
-	await get_tree().create_timer(0.15).timeout
+	#timer para tocar o frame de colide 
+	#e evitar que o ripper fique preso na parede
+	await get_tree().create_timer(0.05).timeout
 	
 	#bate rebate
 	direction_x = direction_x*-1

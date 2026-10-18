@@ -83,7 +83,7 @@ animation = &"walk"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=875760977]
 shape = SubResource("CircleShape2D_bekpf")
 
-[node name="hitbox_enemy" type="Area2D" parent="." unique_id=1410056351]
+[node name="hitbox_enemy" type="Area2D" parent="." unique_id=1410056351 groups=["Enemy"]]
 collision_layer = 64
 collision_mask = 16
 script = ExtResource("3_bekpf")
