@@ -14,6 +14,14 @@
 ### Cheat Code:
 cima, cima, baixo, baixo, esquerda, direita, esquerda, direita, pulo, tiro -> modo imortal
 
-
+### Como jogar
+No Windowns: clique duas vezes sobre o executavel
+Linux:
+ * Vá até a pasta do arquivo pelo terminal e execute os comandos abaixo:
+ ```
+    sudo chmod +x dcc148-Metroid.x86_64
+    sudo ./dcc148-Metroid.x86_64
+    
+    
 
 
